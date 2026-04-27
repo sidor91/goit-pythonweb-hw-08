@@ -1,3 +1,4 @@
+
 # Contacts app
 
 An app with CRUD operations for contacts
@@ -14,10 +15,38 @@ Before you begin, ensure you have the following installed:
 
 Follow these steps to set up and run the project locally.
 
-### 1. Environment Configuration
+### 1. Pull the repo
+```bash
+git clone https://github.com/sidor91/goit-pythonweb-hw-08
+cd goit-pythonweb-hw-08
+```
+
+### 2. Environment Configuration
 The application requires environment variables to function correctly. Create a `.env` file in the root directory by copying the provided example:
 
 ```bash
 cp .env.example .env
 ```
+### 3. Add env variables
+The mandatory env variables are marked with "required" in .env.example
 
+### 4. Install dependencies
+```bash
+poetry install
+```
+### 4. Run migrations
+```bash
+poetry run alembic upgrade head
+```
+
+### 5. Run the app
+```bash
+poetry run python main.py
+```
+
+### 6. Navigate to API Swagger docs
+```bash
+http://127.0.0.1:{PORT}/docs
+```
+
+### 7. Enjoy =))
