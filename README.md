@@ -28,7 +28,7 @@ The application requires environment variables to function correctly. Create a `
 cp .env.example .env
 ```
 ### 3. Add env variables
-The mandatory env variables are marked with "required" in .env.example
+The mandatory env variables are marked with "required"
 
 ### 4. Install dependencies
 ```bash
