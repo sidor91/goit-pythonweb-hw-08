@@ -15,7 +15,7 @@ class Contact(Base):
     __table_args__ = (Index("ix_contacts_full_name", "first_name", "second_name"),)
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    first_name: Mapped[str] = mapped_column(String(50), nullable=False, unique=True)
+    first_name: Mapped[str] = mapped_column(String(50), nullable=False)
     phone: Mapped[str] = mapped_column(String(20), nullable=False, unique=True)
     second_name: Mapped[str | None] = mapped_column(String(50), nullable=True, unique=False)
     email: Mapped[str | None] = mapped_column(String(50), nullable=True, unique=True)

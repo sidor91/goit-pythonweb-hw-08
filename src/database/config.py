@@ -1,6 +1,3 @@
-import os
-from dotenv import load_dotenv
-
 import contextlib
 
 from sqlalchemy.ext.asyncio import (
@@ -9,9 +6,7 @@ from sqlalchemy.ext.asyncio import (
     create_async_engine,
 )
 
-load_dotenv()
-
-url_to_db = os.getenv("DATABASE_URL")
+from src.utils.env_variables import DB_URL
 
 class DatabaseSessionManager:
     def __init__(self, url: str):
@@ -31,9 +26,9 @@ class DatabaseSessionManager:
         finally:
             await session.close()
 
-if (url_to_db is None):
+if (DB_URL is None):
     raise Exception("Database URL is not set")
-sessionmanager = DatabaseSessionManager(url_to_db)
+sessionmanager = DatabaseSessionManager(DB_URL)
 
 
 async def get_db():

@@ -6,6 +6,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.database.contacts.model import Contact as ContactModel
 from src.database.contacts.schemas import ContactCreateSchema, ContactUpdateSchema
+from src.utils.next_birthday import get_next_birthday
 
 
 class ContactRepository:
@@ -26,7 +27,7 @@ class ContactRepository:
                 )
             )
 
-        stmt.offset(skip).limit(limit)
+        stmt = stmt.offset(skip).limit(limit)
         contacts = await self.db.execute(stmt)
         return contacts.scalars().all()
 
@@ -88,9 +89,9 @@ class ContactRepository:
             if not c.birthday:
                 continue
 
-            birthday_this_year = c.birthday.replace(year=today.year)
+            next_birthday = get_next_birthday(c.birthday, today)
 
-            if today <= birthday_this_year <= end_date:
+            if today <= next_birthday <= end_date:
                 upcoming.append(c)
 
         return upcoming
