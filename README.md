@@ -34,19 +34,20 @@ The mandatory env variables are marked with "required"
 ```bash
 poetry install
 ```
-### 4. Run migrations
+### 5. Run migrations
 ```bash
 poetry run alembic upgrade head
 ```
 
-### 5. Run the app
+### 6. Run the app
 ```bash
 poetry run python main.py
 ```
 
-### 6. Navigate to API Swagger docs
+### 7. Navigate to API Swagger docs
 ```bash
-http://127.0.0.1:{PORT}/docs
+http://127.0.0.1:8000/docs
 ```
+*In the example above the port is 8000, but in your case it will be according to env variable*
 
-### 7. Enjoy =))
+### 8. Enjoy =))
