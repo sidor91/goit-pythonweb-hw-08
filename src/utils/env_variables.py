@@ -1,8 +1,11 @@
-import os
-from dotenv import load_dotenv
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
-load_dotenv()
+class Settings(BaseSettings):
+    DATABASE_URL: str
+    PORT: int = 8000
+    model_config = SettingsConfigDict(
+        extra="ignore", env_file=".env", env_file_encoding="utf-8", case_sensitive=True
+    )
 
 
-DB_URL = os.getenv("DATABASE_URL")
-PORT = os.getenv("PORT")
+settings = Settings()

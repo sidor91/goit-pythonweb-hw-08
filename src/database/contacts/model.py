@@ -1,13 +1,15 @@
 from datetime import datetime, date
+from typing import TYPE_CHECKING
 
-from sqlalchemy import Integer, String, Date, Index, func
-from sqlalchemy.orm import mapped_column, Mapped, DeclarativeBase
+from sqlalchemy import Integer, String, Date, Index, func, ForeignKey
+from sqlalchemy.orm import mapped_column, Mapped, relationship
 from sqlalchemy.sql.sqltypes import DateTime
 
+from src.database.config import Base
+from src.database.users.model import User
 
-class Base(DeclarativeBase):
-    pass
-
+if TYPE_CHECKING:
+    from src.database.users.model import User
 
 class Contact(Base):
     __tablename__ = "contacts"
@@ -28,4 +30,9 @@ class Contact(Base):
     )
     updated_at: Mapped[datetime] = mapped_column(
         "updated_at", DateTime, default=func.now(), onupdate=func.now()
+    )
+    user_id: Mapped[int] = mapped_column(ForeignKey("users.id", ondelete="CASCADE"))
+    user: Mapped["User"] = relationship(
+        "User",
+        back_populates="contacts",
     )

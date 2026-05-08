@@ -79,6 +79,7 @@ class ContactResponseSchema(ContactBaseSchema):
     id: int
     first_name: str
     phone: str
+    user_id: int
     created_at: datetime
     updated_at: datetime
 

@@ -7,7 +7,7 @@ from sqlalchemy import pool
 from alembic import context
 
 from src.database.contacts.model import Base
-from src.database.config import url_to_db
+from src.utils.env_variables import settings
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -28,9 +28,8 @@ target_metadata = Base.metadata
 # can be acquired:
 # my_important_option = config.get_main_option("my_important_option")
 # ... etc.
-if url_to_db is None:
-    raise Exception("Database URL is not set")
-config.set_main_option("sqlalchemy.url", url_to_db)
+
+config.set_main_option("sqlalchemy.url", settings.DATABASE_URL)
 
 
 def run_migrations_offline() -> None:
