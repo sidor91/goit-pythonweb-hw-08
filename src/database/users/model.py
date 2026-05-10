@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import TYPE_CHECKING
 
-from sqlalchemy import Integer, String, Index, func
+from sqlalchemy import Integer, String, Index, func, Boolean
 from sqlalchemy.orm import mapped_column, Mapped, relationship
 from sqlalchemy.sql.sqltypes import DateTime
 
@@ -29,3 +29,4 @@ class User(Base):
         back_populates="user",
         cascade="all, delete-orphan",
     )
+    confirmed: Mapped[bool] = mapped_column(Boolean, default=False)

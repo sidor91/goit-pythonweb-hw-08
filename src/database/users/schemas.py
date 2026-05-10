@@ -1,5 +1,4 @@
-from pydantic import BaseModel
-from pydantic import ConfigDict
+from pydantic import BaseModel, ConfigDict, EmailStr
 
 class User(BaseModel):
     id: int
@@ -19,3 +18,7 @@ class UserCreate(BaseModel):
 class Token(BaseModel):
     access_token: str
     token_type: str
+
+
+class RequestEmail(BaseModel):
+    email: EmailStr

@@ -16,4 +16,4 @@ app.include_router(users_router, prefix="/api")
 if __name__ == "__main__":
     import uvicorn
 
-    uvicorn.run("main:app", host="127.0.0.1", port=int(settings.PORT), reload=True)
+    uvicorn.run("main:app", host="127.0.0.1", port=settings.PORT, reload=True)
