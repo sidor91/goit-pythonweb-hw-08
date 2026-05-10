@@ -1,12 +1,27 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request, status
 
 from src.contacts.controller import router as contacts_router
 from src.utils.healthchecker import router as utils_router
 from src.auth.controller import router as auth_router
 from src.users.controller import router as users_router
 from src.utils.env_variables import settings
+from src.utils.limiter import limiter
+
+from starlette.responses import JSONResponse
+from slowapi.errors import RateLimitExceeded
 
 app = FastAPI()
+
+app.state.limiter = limiter
+
+
+@app.exception_handler(RateLimitExceeded)
+async def rate_limit_handler(request: Request, exc: RateLimitExceeded):
+    return JSONResponse(
+        status_code=status.HTTP_429_TOO_MANY_REQUESTS,
+        content={"error": "Перевищено ліміт запитів. Спробуйте пізніше."},
+    )
+
 
 app.include_router(utils_router, prefix="/api")
 app.include_router(contacts_router, prefix="/api")

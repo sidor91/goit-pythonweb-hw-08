@@ -5,7 +5,7 @@ description = ""
 authors = [
     {name = "Serhii Sydorenko",email = "sidorchik91@gmail.com"}
 ]
-requires-python = ">=3.12"
+requires-python = ">=3.12,<4.0"
 dependencies = [
     "fastapi[standard] (>=0.136.0,<0.137.0)",
     "sqlalchemy (>=2.0.49,<3.0.0)",
@@ -18,7 +18,8 @@ dependencies = [
     "passlib[bcrypt] (>=1.7.4,<2.0.0)",
     "bcrypt (==4.0.1)",
     "libgravatar (>=1.0.4,<2.0.0)",
-    "fastapi-mail (>=1.6.4,<2.0.0)"
+    "fastapi-mail (>=1.6.4,<2.0.0)",
+    "slowapi (>=0.1.9,<0.2.0)"
 ]
 
 
