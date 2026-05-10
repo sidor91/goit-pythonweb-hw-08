@@ -25,6 +25,10 @@ class Settings(BaseSettings):
     USE_CREDENTIALS: bool = True
     VALIDATE_CERTS: bool = True
 
+    CLOUDINARY_NAME: str
+    CLOUDINARY_API_KEY: int
+    CLOUDINARY_API_SECRET: str
+
     model_config = SettingsConfigDict(
         extra="ignore", env_file=".env", env_file_encoding="utf-8", case_sensitive=True
     )
