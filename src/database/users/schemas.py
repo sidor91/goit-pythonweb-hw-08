@@ -1,7 +1,7 @@
-from src.database.config import Base
+from pydantic import BaseModel
 from pydantic import ConfigDict
 
-class User(Base):
+class User(BaseModel):
     id: int
     username: str
     email: str
@@ -10,12 +10,12 @@ class User(Base):
     model_config = ConfigDict(from_attributes=True)
 
 
-class UserCreate(Base):
+class UserCreate(BaseModel):
     username: str
     email: str
     password: str
 
 
-class Token(Base):
+class Token(BaseModel):
     access_token: str
     token_type: str
