@@ -1,10 +1,13 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from pydantic import SecretStr, EmailStr
+from typing import List
 
 class Settings(BaseSettings):
     DATABASE_URL: str
 
     PORT: int = 8000
+
+    ORIGINS: List[str] = []
 
     JWT_SECRET: str
     JWT_ALGORITHM: str
